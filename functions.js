@@ -77,7 +77,7 @@ export async function singleMacrosDiv(mealList) {
   foodInformation.append(foodContainer);
 }
 
-export function totalMacrosDiv(mealList) {
+export function totalMacrosDiv(mealList, name ="") {
   let totalCalories = 0;
   let totalProtein = 0;
   let totalFats = 0;
@@ -92,7 +92,7 @@ export function totalMacrosDiv(mealList) {
   foodContainer.className = "total-macro-container";
   createFoodDivs(
     foodContainer,
-    meal.value,
+    name,
     round(totalCalories),
     round(totalCarbs),
     round(totalProtein),
@@ -101,3 +101,4 @@ export function totalMacrosDiv(mealList) {
   );
   foodInformation.append(foodContainer);
 }
+

@@ -3,7 +3,11 @@ import { clear, singleMacrosDiv, totalMacrosDiv } from "./functions.js";
 // const axios = require('axios');
 // const meal = document.getElementById("meal");
 const mealButton = document.querySelector("button");
-// const foodInformation = document.querySelector(".food-information");
+const foodInformation = document.querySelector(".food-information");
+foodInformation.style.alignItems = "center";
+foodInformation.style.marginTop = "2rem";
+const foodImage = document.querySelector(".food-image");
+foodImage.style.width = "500px";
 
 mealButton.addEventListener("click", async () => {
   clear();
@@ -23,11 +27,25 @@ mealButton.addEventListener("click", async () => {
     const response = await axios.request(options);
     const mealList = response.data;
     if (!mealList.length) {
-      console.log("no food");
+      const errorText = document.createElement("h1");
+      errorText.textContent =
+        "The food you have enter could not be found. Please submit another food!";
+      foodInformation.append(errorText);
+
+      const errorImage = document.createElement("img");
+      errorImage.src = "../SBA_308A/images/no-food.png";
+      errorImage.style.width = "400px";
+      foodInformation.append(errorImage);
+      foodInformation.style.alignItems = "center";
+    } else if (mealList.length === 1) {
+      foodInformation.style.alignItems = null;
+      totalMacrosDiv(mealList, meal.value);
     } else {
+      foodInformation.style.alignItems = null;
       totalMacrosDiv(mealList);
       singleMacrosDiv(mealList);
     }
+    meal.value = "";
   } catch (error) {
     console.error(error);
   }
