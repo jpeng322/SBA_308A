@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Macro Calculator</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <div>
-        <label for="meal"></label> Enter your meal!
-        <input type="text" name="meal" id="meal" />
-      </div>
-      <button>Enter</button>
+    <h1>Macro Calculator</h1>
+    <div class="form">
+      <input type="text" name="meal" id="meal" placeholder="Enter your meal!" />
+      <button>Submit</button>
+      <!-- <img src="../SBA_308A/images/carbs.png" alt="" /> -->
     </div>
+    <div class="food-information"></div>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="module" src="index.js"></script>
