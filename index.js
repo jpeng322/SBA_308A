@@ -84,7 +84,10 @@ function round(val) {
   return Math.round(parseInt(val));
 }
 
-function createFoodDivs(container, calories, carbs, protein, fats) {
+function createFoodDivs(container, name = "", calories, carbs, protein, fats) {
+  const foodName = document.createElement("h1");
+  foodName.className = "name";
+  foodName.textContent = name;
   const foodCalories = document.createElement("h2");
   foodCalories.className = "calories";
   foodCalories.textContent = round(calories) + " Calories";
@@ -97,10 +100,18 @@ function createFoodDivs(container, calories, carbs, protein, fats) {
   const foodFats = document.createElement("p");
   foodFats.className = "fats";
   foodFats.textContent = round(fats) + " Fats";
+
+  const macroDiv = document.createElement("div");
+  macroDiv.className = "macro-div";
+
+  macroDiv.append(foodCarbs);
+  macroDiv.append(foodProtein);
+  macroDiv.append(foodFats);
+
+  container.append(foodName);
   container.append(foodCalories);
-  container.append(foodCarbs);
-  container.append(foodProtein);
-  container.append(foodFats);
+  container.append(macroDiv);
+
   console.log(container);
 }
 async function singleMacrosDiv(mealList) {
@@ -108,9 +119,10 @@ async function singleMacrosDiv(mealList) {
   const foodContainer = document.createElement("div");
   foodContainer.className = "single-macro-container";
   for (let food of mealList) {
-    console.log(food);
+    console.log(food.name);
     await createFoodDivs(
       foodContainer,
+      food.name,
       food.calories,
       food.carbohydrates_total_g,
       food.protein_g,
@@ -137,6 +149,7 @@ function totalMacrosDiv(mealList) {
   foodContainer.className = "total-macro-container";
   createFoodDivs(
     foodContainer,
+    meal.value,
     round(totalCalories),
     round(totalCarbs),
     round(totalProtein),
