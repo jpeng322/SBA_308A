@@ -72,3 +72,19 @@ const mealList = [
         "sugar_g": 0.8
     }
 ]
+
+// class Food{
+//     constructor() {
+        
+//     }
+// }
+let totalCalories = 0
+let totalProtein = 0
+let totalFat = 0
+let totalCarbs = 0
+for (let food of mealList) {
+    totalCalories += food.calories
+    totalCarbs += food.carbohydrates_total_g
+    totalProtein += food.protein_g
+    totalFat += food.fat_total_g 
+}
